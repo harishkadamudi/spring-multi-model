@@ -1,7 +1,6 @@
 package sample.multimodule.repository;
 
-import org.springframework.data.domain.*;
-import org.springframework.data.repository.*;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import sample.multimodule.domain.entity.Account;

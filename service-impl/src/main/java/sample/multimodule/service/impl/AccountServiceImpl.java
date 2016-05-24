@@ -1,16 +1,13 @@
 package sample.multimodule.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import sample.multimodule.domain.entity.Account;
 import sample.multimodule.repository.AccountRepository;
-import sample.multimodule.service.api.AccountService;
 import sample.multimodule.service.api.AccountNotFoundException;
+import sample.multimodule.service.api.AccountService;
 
 @Service
 public class AccountServiceImpl implements AccountService {

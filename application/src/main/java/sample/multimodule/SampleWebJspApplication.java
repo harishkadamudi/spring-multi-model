@@ -16,11 +16,13 @@
 
 package sample.multimodule;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.orm.jpa.EntityScan;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "hello,sample.*")
+/*@Configuration
+@EnableAutoConfiguration
+@ComponentScan(basePackages="hello,sample.*")*/
 public class SampleWebJspApplication {
 
 	public static void main(String[] args) throws Exception {
