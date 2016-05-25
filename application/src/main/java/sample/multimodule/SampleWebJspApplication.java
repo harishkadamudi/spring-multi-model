@@ -17,12 +17,19 @@
 package sample.multimodule;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.actuate.autoconfigure.ManagementWebSecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = "hello,sample.*")
-/*@Configuration
-@EnableAutoConfiguration
-@ComponentScan(basePackages="hello,sample.*")*/
+@SpringBootApplication(scanBasePackages = "user,hello,sample.*", exclude = {
+		org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration.class,
+		ManagementWebSecurityAutoConfiguration.class })
+// @EnableJpaRepositories(basePackages = { "user", "sample.*" })
+// @Configuration
+// @EnableAutoConfiguration(exclude = {
+// org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration.class
+// })
+// @ComponentScan(basePackages = { "user", "sample.*" })
+// @EntityScan(basePackageClasses=)
 public class SampleWebJspApplication {
 
 	public static void main(String[] args) throws Exception {

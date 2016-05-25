@@ -54,4 +54,10 @@ public class AccountServiceImpl implements AccountService {
         this.dummyType = dummyType;
     }
 
+	@Override
+	public Account save(Account account) {
+//		return null;
+		return accountRepository.save(account);
+	}
+
 }

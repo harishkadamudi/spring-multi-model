@@ -20,4 +20,6 @@ public interface AccountService {
      * @return created account
      */
     Account createAccountByNumber(String number);
+    
+    Account save(Account account);
 }
