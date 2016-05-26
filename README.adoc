@@ -89,6 +89,11 @@ This module is a maven aggregator that contains all application modules. Also, i
 common dependencies needed by more than one module. Dependencies are defined without version because
 this project has defined Spring IO Platform as parent.
 
+
+==== Project Module - Controller
+
+Module that contains all Controllers used in the project. Depends on Service Model.
+
 ==== Project Module - Model
 
 Module that contains all Entities and Visual Objects to be used in the project. It doesn't have any dependencies.
