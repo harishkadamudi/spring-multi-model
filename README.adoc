@@ -32,13 +32,11 @@ structure.
 │   └── src
 │       └── main
 │           └── java
-│               │─── sample
-│               │    └── multimodule
-│               │        └── domain
-│               │            └── entity
-│               │                └── Account.java
-│				│─── hello	
-│                   └── GreetingController.java
+│               │─── hello
+│                     └── GreetingController
+│                            
+│                            	
+│                   
 ├── model
 │   ├── pom.xml
 │   └── src
