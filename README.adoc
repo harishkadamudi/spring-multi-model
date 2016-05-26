@@ -19,13 +19,26 @@ structure.
 │           │   └── sample
 │           │       └── multimodule
 │           │           ├── SampleWebJspApplication.java
-│           │           └── web
-│           │               └── WelcomeController.java
+│           │          
+│           │               
 │           └── resources
 │               ├── application.properties
 │               └── templates
 │                   └── welcome
 │                       └── show.html
+│
+├── controller
+│   ├── pom.xml
+│   └── src
+│       └── main
+│           └── java
+│               │─── sample
+│               │    └── multimodule
+│               │        └── domain
+│               │            └── entity
+│               │                └── Account.java
+│				│─── hello	
+│                   └── GreetingController.java
 ├── model
 │   ├── pom.xml
 │   └── src

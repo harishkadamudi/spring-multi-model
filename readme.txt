@@ -1,0 +1,2 @@
+CREATE SCHEMA `jms` ;
+GRANT ALL PRIVILEGES ON jms.* TO 'root'@'localhost' WITH GRANT OPTION;
