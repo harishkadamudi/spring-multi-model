@@ -127,6 +127,5 @@ Follow these instructions to execute application using embedded tomcat server:
   module.
 * Execute *mvn spring-boot:run* command on Application module (contains .war)
 * Open browser on *http://localhost:8080*
-* Test *http://localhost:8080/*. You should see account information with "23"
-  number.
+* Test *http://localhost:8080/greeting. You should see Form with input types to Key in.
 
