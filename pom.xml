@@ -28,6 +28,7 @@
       <module>service-impl</module>
       <module>application</module>
       <module>controller</module>
+      <module>jms</module>
     </modules>
 
     <dependencies>

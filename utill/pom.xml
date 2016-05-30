@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>sample.multimodule.utill</groupId>
+	<artifactId>sample.multimodule.utill</artifactId>
+	<name>Utill</name>
+	<description>Utill</description>
+	<parent>
+		<groupId>sample.multimodule</groupId>
+		<artifactId>sample.multimodule</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+
+		<!-- Project Dependency -->
+		<dependency>
+			<groupId>sample.multimodule</groupId>
+			<artifactId>sample.multimodule.model</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- Sprig OXM -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+		</dependency>
+
+		<!-- Spring Model Mapper -->
+		<dependency>
+			<groupId>com.github.jmnarloch</groupId>
+			<artifactId>modelmapper-spring-boot-starter</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+	</dependencies>
+</project>
