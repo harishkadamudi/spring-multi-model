@@ -29,6 +29,7 @@
       <module>application</module>
       <module>controller</module>
       <module>jms</module>
+      <module>utill</module>
     </modules>
 
     <dependencies>
