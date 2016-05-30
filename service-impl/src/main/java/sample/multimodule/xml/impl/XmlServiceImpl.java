@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import sample.multimodule.domain.entity.Account;
 import sample.multimodule.domain.entity.Message;
 import sample.multimodule.domain.xml.AccountXML;
+import sample.multimodule.jms.JMSRemoteConfig;
+import sample.multimodule.jms.sender.JMSRemoteSender;
 import sample.multimodule.jms.sender.JMSSender;
 import sample.multimodule.repository.MessageRepository;
 import sample.multimodule.utill.XMLConversion;
@@ -26,7 +28,10 @@ public class XmlServiceImpl implements XmlService {
 
 	@Autowired
 	JMSSender jmsSender;
-
+	
+	@Autowired
+	JMSRemoteSender jmsRemoteSender;
+	
 	@Override
 	public AccountXML getXML(Account fromAccount, AccountXML toXml) {
 		LOG.debug("Into Entity Conversion" + conversion.getAccountXML(fromAccount, toXml));
@@ -42,6 +47,10 @@ public class XmlServiceImpl implements XmlService {
 		LOG.debug(convertedXml);
 
 		jmsSender.send();
+		
+		// remote queue invocation
+		jmsRemoteSender.send();
+		
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
