@@ -17,12 +17,7 @@
 
 	<dependencies>
 
-		<!-- Project modules -->
-		<dependency>
-			<groupId>sample.multimodule</groupId>
-			<artifactId>sample.multimodule.service.impl</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+	<!-- 	Project modules -->
 		<dependency>
 			<groupId>sample.multimodule.controller</groupId>
 			<artifactId>sample.multimodule.controller</artifactId>

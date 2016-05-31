@@ -16,9 +16,9 @@ public class JMSSender {
 	private Queue queue;
 
 	//	@Scheduled(fixedDelay = 1000, initialDelay = 500)
-	public void send() {
-		String message = "Hello World!";
-		this.template.convertAndSend(queue.getName(), message);
-		System.out.println(" [x] Sent '" + message + "'");
+	public void send(String xmlMessage) {
+		//String message = "Hello World!";
+		this.template.convertAndSend(queue.getName(), xmlMessage);
+		System.out.println(" [x] Sent '" + xmlMessage + "'");
 	}
 }

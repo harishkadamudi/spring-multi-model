@@ -16,7 +16,6 @@ public class JMSQueueReceiver {
 	@RabbitListener(queues = "MessageOutLocalQueue")
 	@SendTo(value = "MessageOutLocalQueueAck")
 	public String receive(String in) {
-
 		System.out.println(" [x] Received '" + in + "'");
 		return "success";
 	}

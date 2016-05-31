@@ -43,10 +43,12 @@ public class XmlServiceImpl implements XmlService {
 		in.setData(convertedXml.getBytes());
 		in.setId(new Long(1));
 		Message save = messageRepository.save(in);
+		
 		System.out.println(convertedXml + save);
+		
 		LOG.debug(convertedXml);
 
-		jmsSender.send();
+		jmsSender.send(convertedXml);
 		
 		// remote queue invocation
 		jmsRemoteSender.send();
