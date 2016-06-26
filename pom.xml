@@ -30,6 +30,7 @@
 		<module>application</module>
 		<module>controller</module>
 		<module>jms</module>
+		<module>remotejms</module>
 		<module>utill</module>
 	</modules>
 	<dependencies>

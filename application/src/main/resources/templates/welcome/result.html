@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Getting Started: Handling Form Submission</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Submitted User Details</h1>
+	<!-- <p th:text="'id: ' + ${greeting.id}" />
+	<p th:text="'content: ' + ${greeting.description.content}" /> -->
+	<p th:text="'User Name ' + ${userDetails.firstName}" />
+	<a href="#" th:href="@{/greeting}" >Submit another message</a>
+</body>
+</html>

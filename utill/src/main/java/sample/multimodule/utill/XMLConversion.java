@@ -12,7 +12,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 import sample.multimodule.domain.entity.Account;
+import sample.multimodule.domain.entity.UserDetails;
 import sample.multimodule.domain.xml.AccountXML;
+import sample.multimodule.domain.xml.UserDetailsXML;
 
 @Configuration
 public class XMLConversion {
@@ -33,6 +35,19 @@ public class XMLConversion {
 	}
 
 	public String convertToXML(AccountXML xml) {
+		final StringWriter out = new StringWriter();
+		marshaller.marshal(xml, new StreamResult(out));
+		return out.toString();
+	}
+
+	public UserDetailsXML getUserXml(UserDetails fromUser, UserDetailsXML toUser) {
+		LOG.debug("Object to convert from : " + fromUser.toString());
+		UserDetailsXML xml = modelMapper.map(fromUser, toUser.getClass());
+		LOG.debug("Converted XML Oject " + xml.toString());
+		return xml;
+	}
+
+	public String modelToxml(UserDetailsXML xml) {
 		final StringWriter out = new StringWriter();
 		marshaller.marshal(xml, new StreamResult(out));
 		return out.toString();

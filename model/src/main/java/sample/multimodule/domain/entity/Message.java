@@ -1,5 +1,7 @@
 package sample.multimodule.domain.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +12,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "MessageOut")
-public class Message {
+public class Message implements Serializable{
+
+	private static final long serialVersionUID = 3937277542482764856L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

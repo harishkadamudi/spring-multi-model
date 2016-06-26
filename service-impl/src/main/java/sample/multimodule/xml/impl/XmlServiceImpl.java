@@ -5,12 +5,13 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import sample.multimodue.remote.sender.jms.RemoteJMSSender;
 import sample.multimodule.domain.entity.Account;
 import sample.multimodule.domain.entity.Message;
+import sample.multimodule.domain.entity.UserDetails;
 import sample.multimodule.domain.xml.AccountXML;
-import sample.multimodule.jms.JMSRemoteConfig;
-import sample.multimodule.jms.sender.JMSRemoteSender;
-import sample.multimodule.jms.sender.JMSSender;
+import sample.multimodule.domain.xml.UserDetailsXML;
+import sample.multimodule.local.Producer;
 import sample.multimodule.repository.MessageRepository;
 import sample.multimodule.utill.XMLConversion;
 import sample.multimodule.xml.api.XmlService;
@@ -27,10 +28,15 @@ public class XmlServiceImpl implements XmlService {
 	MessageRepository messageRepository;
 
 	@Autowired
-	JMSSender jmsSender;
+	Producer producer;
+	/*@Autowired
+	LocalJMSSender jmsSender;*/
 	
 	@Autowired
-	JMSRemoteSender jmsRemoteSender;
+	RemoteJMSSender remoteJmsSender;
+	/*
+	@Autowired
+	JMSRemoteSender jmsRemoteSender;*/
 	
 	@Override
 	public AccountXML getXML(Account fromAccount, AccountXML toXml) {
@@ -48,11 +54,12 @@ public class XmlServiceImpl implements XmlService {
 		
 		LOG.debug(convertedXml);
 
-		jmsSender.send(convertedXml);
-		
+		producer.send(convertedXml);
+//		jmsSender.send(convertedXml);
+//		jmsSender.send(save);
+//		remoteJmsSender.send(convertedXml);
 		// remote queue invocation
-		jmsRemoteSender.send();
-		
+//		jmsRemoteSender.send();
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -60,6 +67,18 @@ public class XmlServiceImpl implements XmlService {
 		}
 		return conversion.getAccountXML(fromAccount, toXml);
 
+	}
+
+	@Override
+	public UserDetailsXML getXML(UserDetails fromUser, UserDetailsXML toXml) {
+		UserDetailsXML userXml = conversion.getUserXml(fromUser, toXml);
+	/*	String modelToxml = conversion.modelToxml(userXml);
+		Message in = new Message();
+		in.setData(modelToxml.getBytes());
+//		in.setId(new Long(1));
+		Message save = messageRepository.save(in);*/
+		
+		return userXml;
 	}
 
 }
