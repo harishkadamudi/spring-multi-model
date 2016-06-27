@@ -25,6 +25,9 @@
         <dependent-module archiveName="sample.multimodule.jms-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sample.multimodule.jms/sample.multimodule.jms">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="sample.multimodule.remotejms-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sample.multimodule.remotejms/sample.multimodule.remotejms">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="sample.multimodule.application"/>
         <property name="java-output-path" value="/sample.multimodule.application/target/classes"/>
     </wb-module>
