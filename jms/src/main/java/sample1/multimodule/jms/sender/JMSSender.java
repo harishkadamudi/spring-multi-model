@@ -19,6 +19,6 @@ public class JMSSender {
 	public void send(String xmlMessage) {
 		//String message = "Hello World!";
 		//this.template.convertAndSend(queue.getName(), xmlMessage);
-		System.out.println(" [x] Sent '" + xmlMessage + "'");
+//		System.out.println(" [x] Sent '" + xmlMessage + "'");
 	}
 }
