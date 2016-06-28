@@ -24,7 +24,8 @@ public class UserDetailsXML {
 	@XmlElement(name="Security_Details")
 	private SecurityDetailsXML securityDetails;
 	
-	
+	@XmlElement(name="Address_Details")
+	private AddressXML address;
 	/*private String socialSecurityNumber;
 	
 	public String getSocialSecurityNumber() {
@@ -75,7 +76,13 @@ public class UserDetailsXML {
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
-	
-	
+
+	public AddressXML getAddress() {
+		return address;
+	}
+
+	public void setAddress(AddressXML address) {
+		this.address = address;
+	}
 
 }

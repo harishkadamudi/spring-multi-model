@@ -26,10 +26,10 @@ public class UserDetails {
 	@JoinColumn(name="security_id")
 	private SecurityDetails securityDetails;
 	
-/*	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="address_id")
 	private Address address;
-	
+/*	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="temp_address_id")
 	private TemporaryAddress temporaryAddress;*/
@@ -64,5 +64,12 @@ public class UserDetails {
 	public void setSecurityDetails(SecurityDetails securityDetails) {
 		this.securityDetails = securityDetails;
 	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
 	
 }
