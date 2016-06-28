@@ -29,6 +29,7 @@ public class XMLConversion {
 	public AccountXML getAccountXML(Account fromAccount, AccountXML toXml) {
 
 		LOG.debug("Object to Convert   " + fromAccount.toString());
+
 		AccountXML acountXMl = modelMapper.map(fromAccount, toXml.getClass());
 		LOG.debug("Converted Object  " + acountXMl.toString());
 		return acountXMl;

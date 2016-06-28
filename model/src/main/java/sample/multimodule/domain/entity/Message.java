@@ -11,7 +11,7 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "MessageOut")
+@Table(name = "Message_Out")
 public class Message implements Serializable{
 
 	private static final long serialVersionUID = 3937277542482764856L;

@@ -22,10 +22,17 @@ public class UserDetails {
 	private String firstName;
 	private String lastName;
 	private Date dob;
-	//@Embedded
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="security_id")
 	private SecurityDetails securityDetails;
+	
+/*	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="address_id")
+	private Address address;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="temp_address_id")
+	private TemporaryAddress temporaryAddress;*/
 	
 	public long getUserId() {
 		return userId;

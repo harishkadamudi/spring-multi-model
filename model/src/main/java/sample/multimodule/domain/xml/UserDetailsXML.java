@@ -4,26 +4,28 @@ import java.util.Date;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "ezyy", namespace = "ezyy")
+@XmlRootElement(name = "User_Details")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class UserDetailsXML {
 
-	@XmlAttribute(name = "id")
+	@XmlElement(name = "id")
 	private long userId;
-	@XmlAttribute(name = "Frist-Name")
+	@XmlElement(name = "Frist-Name")
 	private String firstName;
-	@XmlAttribute(name = "Last-Name")
+	@XmlElement(name = "Last-Name")
 	private String lastName;
-	@XmlAttribute(name = "Date-Of-Birth")
+	@XmlElement(name = "Date-Of-Birth")
 	private Date dob;
-	/*@XmlElementRef
-	private SecurityDetailsXML securityDetails;*/
-	@XmlAttribute(name = "Social-Security-Number")
-	private String socialSecurityNumber;
+
+	//@XmlAttribute(name = "Social-Security-Number")
+	@XmlElement(name="Security_Details")
+	private SecurityDetailsXML securityDetails;
+	
+	
+	/*private String socialSecurityNumber;
 	
 	public String getSocialSecurityNumber() {
 		return socialSecurityNumber;
@@ -31,10 +33,19 @@ public class UserDetailsXML {
 
 	public void setSocialSecurityNumber(String socialSecurityNumber) {
 		this.socialSecurityNumber = socialSecurityNumber;
-	}
+	}*/
 
+	
 	public long getUserId() {
 		return userId;
+	}
+
+	public SecurityDetailsXML getSecurityDetails() {
+		return securityDetails;
+	}
+
+	public void setSecurityDetails(SecurityDetailsXML securityDetails) {
+		this.securityDetails = securityDetails;
 	}
 
 	public void setUserId(long userId) {
@@ -64,13 +75,7 @@ public class UserDetailsXML {
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
-
-/*	public SecurityDetailsXML getSecurityDetails() {
-		return securityDetails;
-	}
-
-	public void setSecurityDetails(SecurityDetailsXML securityDetails) {
-		this.securityDetails = securityDetails;
-	}*/
+	
+	
 
 }
