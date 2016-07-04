@@ -19,6 +19,8 @@ package sample.multimodule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.autoconfigure.ManagementWebSecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 
 @SpringBootApplication(scanBasePackages = "user,hello,sample.*", exclude = {
 		org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration.class,
@@ -30,10 +32,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // })
 // @ComponentScan(basePackages = { "user", "sample.*" })
 // @EntityScan(basePackageClasses=)
-public class SampleWebJspApplication {
+public class SampleWebJspApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(SampleWebJspApplication.class, args);
 	}
 
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(applicationClass);
+	}
+
+	private static Class<SampleWebJspApplication> applicationClass = SampleWebJspApplication.class;
 }
