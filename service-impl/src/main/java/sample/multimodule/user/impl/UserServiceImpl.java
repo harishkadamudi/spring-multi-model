@@ -33,8 +33,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public UserDetails saveUser(UserDetails userInfo) {
-		UserDetails userDetails = userRepository.save(userInfo);
+//		UserDetails userDetails = userRepository.save(userInfo);
 		UserDetailsXML userDetailsXML = xmlService.getXML(userInfo, new UserDetailsXML());
+		UserDetails userDetails = conversion.getUserEntity(userDetailsXML, new UserDetails());
 		String modelToxml = conversion.modelToxml(userDetailsXML);
 		Message in = new Message();
 		in.setData(modelToxml.getBytes());
