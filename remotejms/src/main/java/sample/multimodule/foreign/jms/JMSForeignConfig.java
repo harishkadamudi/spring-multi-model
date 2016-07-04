@@ -1,6 +1,5 @@
 package sample.multimodule.foreign.jms;
 
-import org.springframework.amqp.core.AnonymousQueue;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -30,8 +29,8 @@ public class JMSForeignConfig {
 		connectionFactory.setPassword("guest");
 		return connectionFactory;
 	}
-	
-	@Bean(name="foreignRabbitTemplate")
+
+	@Bean(name = "foreignRabbitTemplate")
 	public RabbitTemplate rabbitTemplate() {
 		return new RabbitTemplate(connectionFactory());
 	}
@@ -43,15 +42,15 @@ public class JMSForeignConfig {
 	public void setMessageInRemoteTopic(String messageInRemoteTopic) {
 		this.messageInRemoteTopic = messageInRemoteTopic;
 	}
-	
+
 	@Bean
 	public Queue autoDeleteQueue1() {
-		return new AnonymousQueue();
+		return new Queue("T1Q1");
 	}
 
 	@Bean
 	public Queue autoDeleteQueue2() {
-		return new AnonymousQueue();
+		return new Queue("T1Q2");
 	}
 
 	@Bean
