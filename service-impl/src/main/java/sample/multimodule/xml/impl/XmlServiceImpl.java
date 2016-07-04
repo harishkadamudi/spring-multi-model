@@ -50,7 +50,7 @@ public class XmlServiceImpl implements XmlService {
 		in.setId(new Long(1));
 		Message save = messageRepository.save(in);
 		
-		System.out.println(convertedXml + save);
+//		System.out.println(convertedXml + save);
 		
 		LOG.debug(convertedXml);
 
@@ -72,12 +72,6 @@ public class XmlServiceImpl implements XmlService {
 	@Override
 	public UserDetailsXML getXML(UserDetails fromUser, UserDetailsXML toXml) {
 		UserDetailsXML userXml = conversion.getUserXml(fromUser, toXml);
-	/*	String modelToxml = conversion.modelToxml(userXml);
-		Message in = new Message();
-		in.setData(modelToxml.getBytes());
-//		in.setId(new Long(1));
-		Message save = messageRepository.save(in);*/
-		
 		return userXml;
 	}
 

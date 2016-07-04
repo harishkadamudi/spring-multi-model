@@ -1,8 +1,10 @@
 package sample.multimodule.utill;
 
+import java.io.StringReader;
 import java.io.StringWriter;
 
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -48,9 +50,26 @@ public class XMLConversion {
 		return xml;
 	}
 
+	public UserDetails getUserEntity(UserDetailsXML xml, UserDetails entity) {
+		LOG.debug(" XML converstion from : ");
+		entity = modelMapper.map(xml, entity.getClass());
+		LOG.debug("Converted Entity Oject " + xml.toString());
+		return entity;
+	}
+
 	public String modelToxml(UserDetailsXML xml) {
 		final StringWriter out = new StringWriter();
 		marshaller.marshal(xml, new StreamResult(out));
 		return out.toString();
+	}
+
+	public UserDetailsXML xmlToModel(String xml) {
+		UserDetailsXML userDetails = null;
+		try {
+			userDetails = (UserDetailsXML) marshaller.unmarshal(new StreamSource(new StringReader(xml)));
+		} catch (Exception e) {
+			throw e;
+		}
+		return userDetails;
 	}
 }
