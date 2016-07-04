@@ -8,8 +8,6 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
 
 import sample.multimodue.remote.sender.jms.RemoteJMSSender;
-import sample1.multimodule.jms.sender.JMSRemoteSender;
-import scala.remote;
 
 @Component
 // @RabbitListener(queues="queue.name")

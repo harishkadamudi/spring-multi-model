@@ -20,21 +20,14 @@ public class UserDetailsXML {
 	@XmlElement(name = "Date-Of-Birth")
 	private Date dob;
 
-	//@XmlAttribute(name = "Social-Security-Number")
 	@XmlElement(name="Security_Details")
 	private SecurityDetailsXML securityDetails;
 	
 	@XmlElement(name="Address_Details")
 	private AddressXML address;
-	/*private String socialSecurityNumber;
 	
-	public String getSocialSecurityNumber() {
-		return socialSecurityNumber;
-	}
-
-	public void setSocialSecurityNumber(String socialSecurityNumber) {
-		this.socialSecurityNumber = socialSecurityNumber;
-	}*/
+	@XmlElement(name="Temporary_Address_Details")
+	private TemporaryXML temporaryAddress;
 
 	
 	public long getUserId() {
@@ -85,4 +78,13 @@ public class UserDetailsXML {
 		this.address = address;
 	}
 
+	public TemporaryXML getTemporaryAddress() {
+		return temporaryAddress;
+	}
+
+	public void setTemporaryAddress(TemporaryXML temporaryAddress) {
+		this.temporaryAddress = temporaryAddress;
+	}
+
+	
 }

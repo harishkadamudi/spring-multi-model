@@ -10,8 +10,8 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 @Configuration
 public class Jaxb2MarshallerConfig {
 
-	@Bean(name = "castorMarshaller")
-	public Jaxb2Marshaller getCastorMarshaller() {
+	@Bean
+	public Jaxb2Marshaller getJaxb2Marshaller() {
 		Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
 		jaxb2Marshaller.setPackagesToScan("sample.multimodule.domain.xml");
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -19,5 +19,5 @@ public class Jaxb2MarshallerConfig {
 		jaxb2Marshaller.setMarshallerProperties(map);
 		return jaxb2Marshaller;
 	}
-	
+
 }

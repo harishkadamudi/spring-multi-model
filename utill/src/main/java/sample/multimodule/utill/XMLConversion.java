@@ -13,48 +13,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
-import sample.multimodule.domain.entity.Account;
 import sample.multimodule.domain.entity.UserDetails;
-import sample.multimodule.domain.xml.AccountXML;
 import sample.multimodule.domain.xml.UserDetailsXML;
 
 @Configuration
 public class XMLConversion {
 
 	private static final Log LOG = LogFactory.getLog(XMLConversion.class);
+
 	@Autowired
 	Jaxb2Marshaller marshaller;
 
 	@Autowired
 	private ModelMapper modelMapper;
 
-	public AccountXML getAccountXML(Account fromAccount, AccountXML toXml) {
-
-		LOG.debug("Object to Convert   " + fromAccount.toString());
-
-		AccountXML acountXMl = modelMapper.map(fromAccount, toXml.getClass());
-		LOG.debug("Converted Object  " + acountXMl.toString());
-		return acountXMl;
+	public Object getXml(UserDetails fromUser, UserDetailsXML toUser) {
+		
+		return  this.conversion(fromUser, toUser);
 	}
 
-	public String convertToXML(AccountXML xml) {
-		final StringWriter out = new StringWriter();
-		marshaller.marshal(xml, new StreamResult(out));
-		return out.toString();
-	}
-
-	public UserDetailsXML getUserXml(UserDetails fromUser, UserDetailsXML toUser) {
+	private Object conversion(Object fromUser, Object toUser) {
 		LOG.debug("Object to convert from : " + fromUser.toString());
-		UserDetailsXML xml = modelMapper.map(fromUser, toUser.getClass());
+		 Object xml = modelMapper.map(fromUser, toUser.getClass());
 		LOG.debug("Converted XML Oject " + xml.toString());
 		return xml;
 	}
-
-	public UserDetails getUserEntity(UserDetailsXML xml, UserDetails entity) {
-		LOG.debug(" XML converstion from : ");
-		entity = modelMapper.map(xml, entity.getClass());
-		LOG.debug("Converted Entity Oject " + xml.toString());
-		return entity;
+	
+	public Object getEntity(UserDetailsXML xml, UserDetails entity) {
+		return conversion(xml, entity);
 	}
 
 	public String modelToxml(UserDetailsXML xml) {
@@ -63,13 +49,12 @@ public class XMLConversion {
 		return out.toString();
 	}
 
-	public UserDetailsXML xmlToModel(String xml) {
-		UserDetailsXML userDetails = null;
+	public Object xmlToModel(String xml) throws Exception {
 		try {
-			userDetails = (UserDetailsXML) marshaller.unmarshal(new StreamSource(new StringReader(xml)));
+			return marshaller.unmarshal(new StreamSource(new StringReader(xml)));
 		} catch (Exception e) {
 			throw e;
 		}
-		return userDetails;
 	}
+
 }
