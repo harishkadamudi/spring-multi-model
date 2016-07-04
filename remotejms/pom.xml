@@ -25,5 +25,16 @@
 			<artifactId>sample.multimodule.model</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>sample.multimodule.utill</groupId>
+			<artifactId>sample.multimodule.utill</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>sample.multimodule</groupId>
+			<artifactId>sample.multimodule.repository</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 </project>
