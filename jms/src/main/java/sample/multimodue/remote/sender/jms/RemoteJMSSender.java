@@ -9,12 +9,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 
 import sample.multimodule.foreign.jms.sender.JMSForeignSender;
-import sample1.multimodule.jms.sender.JMSRemoteSender;
 
 @Configuration
 public class RemoteJMSSender {
 
-	private static final Log LOG = LogFactory.getLog(JMSRemoteSender.class);
+	private static final Log LOG = LogFactory.getLog(RemoteJMSSender.class);
 
 	@Autowired
 	private RabbitTemplate template;

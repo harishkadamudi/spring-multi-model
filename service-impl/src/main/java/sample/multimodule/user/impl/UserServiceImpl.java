@@ -17,9 +17,9 @@ import sample.multimodule.xml.api.XmlService;
 
 @Service
 public class UserServiceImpl implements UserService {
-	
+
 	private static final Log LOG = LogFactory.getLog(UserServiceImpl.class);
-	
+
 	@Autowired
 	UserRepository userRepository;
 	@Autowired
@@ -30,12 +30,12 @@ public class UserServiceImpl implements UserService {
 	private XmlService xmlService;
 	@Autowired
 	Producer producer;
-	
+
 	@Override
 	public UserDetails saveUser(UserDetails userInfo) {
-//		UserDetails userDetails = userRepository.save(userInfo);
+		// UserDetails userDetails = userRepository.save(userInfo);
 		UserDetailsXML userDetailsXML = xmlService.getXML(userInfo, new UserDetailsXML());
-		UserDetails userDetails = conversion.getUserEntity(userDetailsXML, new UserDetails());
+		UserDetails userDetails = (UserDetails) conversion.getEntity(userDetailsXML, new UserDetails());
 		String modelToxml = conversion.modelToxml(userDetailsXML);
 		Message in = new Message();
 		in.setData(modelToxml.getBytes());

@@ -29,6 +29,10 @@ public class UserDetails {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="address_id")
 	private Address address;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="temp_address_id")
+	private TemporaryAddress temporaryAddress;
 /*	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="temp_address_id")
@@ -69,6 +73,18 @@ public class UserDetails {
 	}
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+	public TemporaryAddress getTemporaryAddress() {
+		return temporaryAddress;
+	}
+	public void setTemporaryAddress(TemporaryAddress temporaryAddress) {
+		this.temporaryAddress = temporaryAddress;
+	}
+	@Override
+	public String toString() {
+		return "UserDetails [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", dob=" + dob
+				+ ", securityDetails=" + securityDetails + ", address=" + address + ", temporaryAddress="
+				+ temporaryAddress + "]";
 	}
 	
 	

@@ -10,8 +10,6 @@ import org.springframework.stereotype.Component;
 import sample.multimodue.remote.sender.jms.RemoteJMSSender;
 
 @Component
-// @RabbitListener(queues="queue.name")
-// @EnableRabbit
 public class Consumer {
 
 	private static final Log LOG = LogFactory.getLog(Consumer.class);

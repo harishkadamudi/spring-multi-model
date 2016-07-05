@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import sample.multimodule.domain.entity.UserDetails;
+import sample.multimodule.domain.xml.UserDetailsXML;
 import sample.multimodule.repository.UserRepository;
 import sample.multimodule.utill.XMLConversion;
 
@@ -27,8 +28,8 @@ public class JMSForeignReceiver {
 		sample.multimodule.domain.xml.UserDetailsXML userDetails = null;
 		UserDetails userEntity = null;
 		try {
-			userDetails = xmlconversion.xmlToModel(in);
-			userEntity = xmlconversion.getUserEntity(userDetails, new UserDetails());
+			userDetails = (UserDetailsXML) xmlconversion.xmlToModel(in);
+			userEntity = (UserDetails) xmlconversion.getEntity(userDetails, new UserDetails());
 			userEntity = userRepository.save(userEntity);
 			System.out.println(userEntity);
 		} catch (Exception e) {
@@ -41,8 +42,6 @@ public class JMSForeignReceiver {
 	@RabbitListener(queues = "T1Q2")
 	// @RabbitListener(queues = "#{autoDeleteQueue2.name}")
 	public void receive2(String in) throws InterruptedException {
-		// receive(in, 2);
 		System.out.println("receive2" + in);
-
 	}
 }

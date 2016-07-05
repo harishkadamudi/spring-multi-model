@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import sample.multimodule.domain.entity.UserDetails;
-import sample.multimodule.service.api.AccountService;
 import sample.multimodule.user.api.UserService;
 
 @Controller
@@ -21,8 +20,6 @@ public class GreetingController {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	protected AccountService accountService;
 	  
 	@RequestMapping(value = "/greeting", method = RequestMethod.GET)
 	public String greetingForm(Model model) {
