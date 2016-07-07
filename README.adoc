@@ -1,7 +1,6 @@
-= Spring Boot Multimodule project example
+= Spring Boot Multi Module project.
 
-Proofs of concept that shows how to generate Spring Boot multimodule
-applications.
+Proofs of concept that demonstration as per the POC1 document.
 
 === Description
 
@@ -25,15 +24,18 @@ structure.
 │               ├── application.properties
 │               └── templates
 │                   └── welcome
-│                       └── show.html
+│                       └── greeting.html
+│						└── result.html
 │
 ├── controller
 │   ├── pom.xml
 │   └── src
 │       └── main
 │           └── java
-│               │─── hello
-│                     └── GreetingController
+│               │─── sample
+│               	 │───multimodule
+│               			│─── web 
+│                     			└── GreetingController
 │                            
 │                            	
 │                   
