@@ -28,9 +28,12 @@
 		<module>service-api</module>
 		<module>service-impl</module>
 		<module>application</module>
+		<module>application2</module>
 		<module>controller</module>
 		<module>jms</module>
+		<module>jms2</module>
 		<module>remotejms</module>
+		<module>remotejms2</module>
 		<module>utill</module>
 	</modules>
 	<dependencies>

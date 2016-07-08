@@ -2,6 +2,7 @@ package sample.multimodule.foreign.jms.sender;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,11 @@ public class JMSForeignSender {
 
 	@Autowired
 	private TopicExchange topic;
-
+	
+	@Autowired
+	@Qualifier(value = "messageInQueue")
+	private Queue queue;
+	
 	private final String[] keys = { "quick.orange.rabbit", "lazy.orange.elephant", "quick.orange.fox", "lazy.brown.fox",
 			"lazy.pink.rabbit", "quick.brown.fox" };
 
@@ -30,4 +35,9 @@ public class JMSForeignSender {
 		LOG.debug(" [x] Sent '" + message + "'");
 	}
 
+	public void sendOtherDomain(String message) {
+		template.setQueue(queue.getName());
+		LOG.debug("[x] --- Sending to Queue----" + queue.getName() + " ---- [x]");
+		template.convertAndSend(queue.getName(), message);
+	}
 }

@@ -13,7 +13,11 @@
 	<dependencies>
 
 		<!-- Project modules -->
-
+		<dependency>
+			<groupId>sample.multimodule.jms2</groupId>
+			<artifactId>sample.multimodule.jms2</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<!-- Spring Boot dependencies -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>

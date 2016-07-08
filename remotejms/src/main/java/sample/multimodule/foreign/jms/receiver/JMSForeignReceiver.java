@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 import sample.multimodule.domain.entity.UserDetails;
 import sample.multimodule.domain.xml.UserDetailsXML;
+import sample.multimodule.foreign.jms.sender.JMSForeignSender;
 import sample.multimodule.repository.UserRepository;
 import sample.multimodule.utill.XMLConversion;
 
@@ -21,8 +22,11 @@ public class JMSForeignReceiver {
 	@Autowired
 	UserRepository userRepository;
 
-	@RabbitListener(queues = "T1Q1")
-	// @RabbitListener(queues = "#{autoDeleteQueue1.name}")
+	@Autowired
+	private JMSForeignSender jMSForeignSender;
+	
+//	@RabbitListener(queues = "T1Q1")
+	 @RabbitListener(queues = "#{autoDeleteQueue1.name}")
 	public void receive1(String in) throws InterruptedException {
 		// receive(in, 1);
 		sample.multimodule.domain.xml.UserDetailsXML userDetails = null;
@@ -39,9 +43,12 @@ public class JMSForeignReceiver {
 
 	}
 
-	@RabbitListener(queues = "T1Q2")
-	// @RabbitListener(queues = "#{autoDeleteQueue2.name}")
+//	@RabbitListener(queues = "T1Q2")
+	 @RabbitListener(queues = "#{autoDeleteQueue2.name}")
 	public void receive2(String in) throws InterruptedException {
 		System.out.println("receive2" + in);
+		LOG.debug("[x] -----------Received Message ---- with Queue T1Q1 " );
+		jMSForeignSender.sendOtherDomain(in);
+		LOG.debug("[x] -----------Sent Message to another Domain ----------[x]" );
 	}
 }

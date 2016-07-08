@@ -19,7 +19,7 @@ public class Consumer {
 	
 	private String message ;
 	
-	@RabbitListener(queues = "queue.messageoutlocal")
+	@RabbitListener(queues = "MessageOutLocalQueue")
 	@SendTo(value = "queue.messageoutlocalAck")
 	public Boolean receiveLocalQueue(String message) {
 		LOG.debug(" ------[x] --" + this.getClass().getName() + " consuming Message \n " + message);
