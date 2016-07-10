@@ -16,9 +16,14 @@ public class JMSForeignConfig {
 
 	@Value("${message.in.remote.topic1}")
 	private String messageInRemoteTopic;
-
+	
+	@Bean(name = "messageFromLocalQueue")
+	public Queue queue() {
+		return new Queue("queue.messageFromlocal");
+	}
+	
 	@Bean
-	public TopicExchange topic1() {
+	public TopicExchange topic() {
 		return new TopicExchange(getMessageInRemoteTopic());
 	}
 
@@ -53,25 +58,19 @@ public class JMSForeignConfig {
 		return new Queue("T2Q2");
 	}
 
-	@Bean(name = "messageInQueue")
-	public Queue queue() {
-		return new Queue("queue.messageinlocal");
+	@Bean
+	public Binding binding1a(TopicExchange topic, Queue autoDeleteQueue1) {
+		return BindingBuilder.bind(autoDeleteQueue1).to(topic).with("*.orange.*");
 	}
 
 	@Bean
-	public Binding binding1a(TopicExchange topic1, Queue autoDeleteQueue1) {
-		return BindingBuilder.bind(autoDeleteQueue1).to(topic1).with("*.orange.*");
+	public Binding binding1b(TopicExchange topic, Queue autoDeleteQueue1) {
+		return BindingBuilder.bind(autoDeleteQueue1).to(topic).with("*.*.rabbit");
 	}
 
 	@Bean
-	public Binding binding1b(TopicExchange topic1, Queue autoDeleteQueue2) {
-		return BindingBuilder.bind(autoDeleteQueue2).to(topic1).with("*.*.rabbit");
+	public Binding binding2a(TopicExchange topic, Queue autoDeleteQueue2) {
+		return BindingBuilder.bind(autoDeleteQueue2).to(topic).with("lazy.#");
 	}
-
-	/*
-	 * @Bean public Binding binding2a(TopicExchange topic1, Queue
-	 * autoDeleteQueue2) { return
-	 * BindingBuilder.bind(autoDeleteQueue2).to(topic1).with("lazy.#"); }
-	 */
 
 }

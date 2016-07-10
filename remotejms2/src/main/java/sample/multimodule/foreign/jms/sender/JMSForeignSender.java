@@ -21,11 +21,11 @@ public class JMSForeignSender {
 
 	@Autowired
 	private TopicExchange topic;
-	
+
 	@Autowired
-	@Qualifier(value = "messageInQueue")
+	@Qualifier(value = "messageFromLocalQueue")
 	private Queue queue;
-	
+
 	private final String[] keys = { "quick.orange.rabbit", "lazy.orange.elephant", "quick.orange.fox", "lazy.brown.fox",
 			"lazy.pink.rabbit", "quick.brown.fox" };
 
@@ -36,6 +36,7 @@ public class JMSForeignSender {
 	}
 
 	public void sendOtherDomain(String message) {
+		System.out.println("[x] --- Sending to Queue----" + queue.getName() + " ---- [x]");
 		template.setQueue(queue.getName());
 		LOG.debug("[x] --- Sending to Queue----" + queue.getName() + " ---- [x]");
 		template.convertAndSend(queue.getName(), message);

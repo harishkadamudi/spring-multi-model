@@ -20,13 +20,12 @@ public class JMSForeignSender {
 	private RabbitTemplate template;
 
 	@Autowired
-	@Qualifier(value="topic1")
 	private TopicExchange topic;
-	
+
 	@Autowired
 	@Qualifier(value = "messageInQueue")
 	private Queue queue;
-	
+
 	private final String[] keys = { "quick.orange.rabbit", "lazy.orange.elephant", "quick.orange.fox", "lazy.brown.fox",
 			"lazy.pink.rabbit", "quick.brown.fox" };
 
