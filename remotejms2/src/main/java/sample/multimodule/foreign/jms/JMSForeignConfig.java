@@ -14,10 +14,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class JMSForeignConfig {
 
-	@Value("${message.in.remote.topic}")
+	@Value("${message.in.remote.topic1}")
 	private String messageInRemoteTopic;
 
-	@Bean(name="topic1")
+	@Bean
 	public TopicExchange topic1() {
 		return new TopicExchange(getMessageInRemoteTopic());
 	}
@@ -44,13 +44,13 @@ public class JMSForeignConfig {
 	}
 
 	@Bean
-	public Queue queueT1Q1() {
-		return new Queue("T1Q1");
+	public Queue autoDeleteQueue1() {
+		return new Queue("T2Q1");
 	}
 
 	@Bean
-	public Queue queueT1Q2() {
-		return new Queue("T1Q2");
+	public Queue autoDeleteQueue2() {
+		return new Queue("T2Q2");
 	}
 
 	@Bean(name = "messageInQueue")
@@ -59,13 +59,13 @@ public class JMSForeignConfig {
 	}
 
 	@Bean
-	public Binding binding1a(TopicExchange topic1, Queue queueT1Q1) {
-		return BindingBuilder.bind(queueT1Q1).to(topic1).with("*.orange.*");
+	public Binding binding1a(TopicExchange topic1, Queue autoDeleteQueue1) {
+		return BindingBuilder.bind(autoDeleteQueue1).to(topic1).with("*.orange.*");
 	}
 
 	@Bean
-	public Binding binding1b(TopicExchange topic1, Queue queueT1Q2) {
-		return BindingBuilder.bind(queueT1Q2).to(topic1).with("*.*.rabbit");
+	public Binding binding1b(TopicExchange topic1, Queue autoDeleteQueue2) {
+		return BindingBuilder.bind(autoDeleteQueue2).to(topic1).with("*.*.rabbit");
 	}
 
 	/*

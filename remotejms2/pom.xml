@@ -31,10 +31,10 @@
 			<artifactId>sample.multimodule.utill</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>sample.multimodule</groupId>
 			<artifactId>sample.multimodule.repository</artifactId>
 			<version>${project.version}</version>
-		</dependency>
+		</dependency> -->
 	</dependencies>
 </project>

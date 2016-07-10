@@ -20,7 +20,6 @@ public class JMSForeignSender {
 	private RabbitTemplate template;
 
 	@Autowired
-	@Qualifier(value="topic1")
 	private TopicExchange topic;
 	
 	@Autowired
@@ -37,7 +36,6 @@ public class JMSForeignSender {
 	}
 
 	public void sendOtherDomain(String message) {
-		System.out.println("[x] --- Sending to Queue----" + queue.getName() + " ---- [x]");
 		template.setQueue(queue.getName());
 		LOG.debug("[x] --- Sending to Queue----" + queue.getName() + " ---- [x]");
 		template.convertAndSend(queue.getName(), message);

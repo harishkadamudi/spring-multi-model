@@ -11,6 +11,13 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<dependencies>
+	
+		<!--  Project Dependencies -->
+		<dependency>
+			<groupId>sample.multimodule.remotejms2</groupId>
+			<artifactId>sample.multimodule.remotejms2</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-amqp</artifactId>
