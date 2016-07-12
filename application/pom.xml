@@ -69,8 +69,12 @@
 	<profiles>
 		<profile>
 			<id>app1</id>
+			<properties>
+				<activatedProperties>app1</activatedProperties>
+				<applicationContextPath>/application1</applicationContextPath>
+			</properties>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<build>
 				<finalName>application1</finalName>
@@ -92,7 +96,12 @@
 		</profile>
 				<profile>
 			<id>app2</id>
+			<properties>
+				<activatedProperties>app2</activatedProperties>
+				<applicationContextPath>/application2</applicationContextPath>
+			</properties>
 			<activation>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<build>
 				<finalName>application2</finalName>
