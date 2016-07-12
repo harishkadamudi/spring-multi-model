@@ -8,11 +8,13 @@ import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import sample.multimodue.remote.consumer.jms.RemoteJMSConsumer;
 
 @Configuration
-public class RemoteJMSConfig {
+@Profile(value = "app1")
+public class App1RemoteJMSConfig {
 
 	@Value("${message.out.remote.queue}")
 	private String messageOutRemoteQueue;

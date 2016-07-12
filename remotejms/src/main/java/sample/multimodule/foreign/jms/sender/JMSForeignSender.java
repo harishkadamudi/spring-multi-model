@@ -7,6 +7,7 @@ import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
@@ -18,7 +19,9 @@ public class JMSForeignSender {
 	@Autowired
 	@Qualifier(value = "foreignRabbitTemplate")
 	private RabbitTemplate template;
-
+	
+	private @Value("${application.logger.name}") String appName;
+	
 	@Autowired
 	private TopicExchange topic;
 
@@ -32,13 +35,13 @@ public class JMSForeignSender {
 	public void send(String message) {
 		String key = keys[this.index];
 		template.convertAndSend(topic.getName(), key, message);
-		LOG.debug(" [x] Sent '" + message + "'");
+		LOG.debug(" [x -- "+appName +" -- x] Sent '" + message + "'");
 	}
 
 	public void sendOtherDomain(String message) {
 		System.out.println("[x] --- Sending to Queue----" + queue.getName() + " ---- [x]");
 		template.setQueue(queue.getName());
-		LOG.debug("[x] --- Sending to Queue----" + queue.getName() + " ---- [x]");
+		LOG.debug("[x -- "+appName+ " -- x] --- Sending to Queue----" + queue.getName() + " ---- [x]");
 		template.convertAndSend(queue.getName(), message);
 	}
 }

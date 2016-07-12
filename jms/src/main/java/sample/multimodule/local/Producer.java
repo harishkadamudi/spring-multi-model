@@ -6,12 +6,15 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Producer {
 
 	private static final Log LOG = LogFactory.getLog(Producer.class);
+	
+	private @Value("${application.logger.name}") String appName;
 	
 	@Autowired
 	private RabbitTemplate template;
@@ -21,7 +24,7 @@ public class Producer {
 	private Queue queue;
 
 	public void send(String message) {
-		LOG.debug(" ------[x] --"+ this.getClass().getName() +" Queue Name " + queue.getName()+ " Producing Message \n " + message);
+		LOG.debug(" ------[ " +appName+ "] --"+ this.getClass().getName() +" Queue Name " + queue.getName()+ " Producing Message \n " + message);
 		this.template.convertAndSend(this.queue.getName(),message);
 	}
 }

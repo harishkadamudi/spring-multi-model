@@ -4,6 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
 
@@ -17,12 +18,15 @@ public class Consumer {
 	@Autowired
 	RemoteJMSSender remoteJmsSender;
 	
+	private @Value("${application.logger.name}") String appName;
+	
 	private String message ;
 	
-	@RabbitListener(queues = "MessageOutLocalQueue")
-	@SendTo(value = "queue.messageoutlocalAck")
+//	@RabbitListener(queues = "MessageOutLocalQueue")
+	@RabbitListener(queues = "#{localQueue.name}")
+	@SendTo(value = "#{localQueueAck.name}")
 	public Boolean receiveLocalQueue(String message) {
-		LOG.debug(" ------[x] --" + this.getClass().getName() + " consuming Message \n " + message);
+		LOG.debug(" ------[x -- "+ appName + "---x] --" + this.getClass().getName() + " consuming Message \n " + message);
 		if (message.isEmpty() || message.trim().length() == 0)
 			return Boolean.FALSE;
 		else
@@ -30,10 +34,10 @@ public class Consumer {
 			return Boolean.TRUE;
 	}
 
-	@RabbitListener(queues = "queue.messageoutlocalAck")
+	@RabbitListener(queues = "#{localQueueAck.name}")
 	public void ackLocalQueue(Boolean isMsgReceived) {
 		if(isMsgReceived){
-			LOG.debug(" ----------- Received Message from Local Queue [Message] - \n "+getMessage());
+			LOG.debug(" ------[x -- "+ appName + "---x] -- Acknowledgement Received Message from Local Queue [x---Message ---x ] - \n "+getMessage());
 			remoteJmsSender.send(getMessage());
 		}
 	}
