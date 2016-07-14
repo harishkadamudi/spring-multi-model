@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
+import sample.multimodule.domain.entity.Message;
 import sample.multimodule.foreign.jms.sender.JMSForeignSender;
 
 @Configuration
@@ -19,17 +20,15 @@ public class JMSForeignReceiver {
 	private @Value("${application.logger.name}") String appName;
 	
 	@RabbitListener(queues = "#{autoDeleteQueue1.name}")
-	public void receive1(String in) throws InterruptedException {
+	public void receive1(Message in) throws InterruptedException {
 		//receive(in, 1);
 		LOG.debug("[x -- "+appName+" -- x] Received Message From Topic Queue 1" );
-		System.out.println( "receive1 "  + in );
 	}
 
 	@RabbitListener(queues = "#{autoDeleteQueue2.name}")
-	public void receive2(String in) throws InterruptedException {
+	public void receive2(Message in) throws InterruptedException {
 		//receive(in, 2);
 		LOG.debug("[x -- "+appName+" -- x] Received Message From Topic Queue 2 ----------[x]");
-		System.out.println( "receive2" +in );
 		jMSForeignSender.sendOtherDomain(in);
 		LOG.debug("[x -- "+appName+" -- x] Sending Message to Local Queue --------[x]");
 	}

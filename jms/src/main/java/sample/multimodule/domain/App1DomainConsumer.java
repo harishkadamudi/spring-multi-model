@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import sample.multimodule.domain.entity.Message;
+
 @Component
 @Profile(value="app1")
 public class App1DomainConsumer {
@@ -18,7 +20,7 @@ public class App1DomainConsumer {
 	private String message;
 	
 	@RabbitListener(queues = "${message.from.local.queue}")
-	public void receiveLocalQueue(String message) {
+	public void receiveLocalQueue(Message message) {
 		System.out.println(" ------[x -- Application1 -- x] Home Domain Queue ------[x -- Application1 -- x] --" + this.getClass().getName() + " consuming Message \n "
 				+ message);
 		LOG.debug(" ------[x -- "+ appName + "---x] -- " + this.getClass().getName() + " consuming Message \n "

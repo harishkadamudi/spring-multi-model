@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import sample.multimodule.domain.entity.Message;
+
 @Component
 public class Producer {
 
@@ -23,8 +25,9 @@ public class Producer {
 	@Qualifier(value = "localQueue")
 	private Queue queue;
 
-	public void send(String message) {
+	public void send(Message message) {
 		LOG.debug(" ------[ " +appName+ "] --"+ this.getClass().getName() +" Queue Name " + queue.getName()+ " Producing Message \n " + message);
 		this.template.convertAndSend(this.queue.getName(),message);
 	}
+	
 }

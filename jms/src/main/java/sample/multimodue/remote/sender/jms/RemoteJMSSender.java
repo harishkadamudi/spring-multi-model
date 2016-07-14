@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
-import sample.multimodule.foreign.jms.sender.JMSForeignSender;
+import sample.multimodule.domain.entity.Message;
 
 @Configuration
 public class RemoteJMSSender {
@@ -24,16 +24,13 @@ public class RemoteJMSSender {
 	@Qualifier(value = "remoteQueue")
 	private Queue queue;
 
-	@Autowired
-	JMSForeignSender jmsForeignSender;
-	
-	public void send(String message) {
+	public void send(Message message) {
 
 		LOG.debug(" ------[x -- "+ appName + "---x] --"+ this.getClass().getName() +" Remote queue Name " + queue.getName()+ ", Sending Message \n " + message);
 //		String message = "Hello World!";
 		this.template.convertAndSend(queue.getName(), message);
 //		System.out.println(" [x] Sent to Remote Queue " + queue.getName() + " + message + ");
-		jmsForeignSender.send(message);
+		
 	}
-
+	
 }

@@ -33,7 +33,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-
 			<!-- Exclude Embedded Tomcat -->
 			<exclusions>
 				<exclusion>
@@ -94,7 +93,7 @@
 				</plugins>
 			</build>
 		</profile>
-				<profile>
+		<profile>
 			<id>app2</id>
 			<properties>
 				<activatedProperties>app2</activatedProperties>

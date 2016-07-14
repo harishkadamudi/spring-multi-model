@@ -38,7 +38,6 @@ public class SampleWebJspApplication extends SpringBootServletInitializer {
 		SpringApplication.run(SampleWebJspApplication.class, args);
 	}
 
-	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(applicationClass);
 	}

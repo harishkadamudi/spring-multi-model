@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
+import sample.multimodule.domain.entity.Message;
+
 @Configuration
 public class JMSForeignSender {
 
@@ -32,13 +34,13 @@ public class JMSForeignSender {
 	private final String[] keys = { "quick.orange.rabbit", "lazy.orange.elephant", "quick.orange.fox", "lazy.brown.fox",
 			"lazy.pink.rabbit", "quick.brown.fox" };
 
-	public void send(String message) {
+	public void send(Message message) {
 		String key = keys[this.index];
 		template.convertAndSend(topic.getName(), key, message);
 		LOG.debug(" [x -- "+appName +" -- x] Sent '" + message + "'");
 	}
 
-	public void sendOtherDomain(String message) {
+	public void sendOtherDomain(Message message) {
 		System.out.println("[x] --- Sending to Queue----" + queue.getName() + " ---- [x]");
 		template.setQueue(queue.getName());
 		LOG.debug("[x -- "+appName+ " -- x] --- Sending to Queue----" + queue.getName() + " ---- [x]");

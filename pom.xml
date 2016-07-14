@@ -7,7 +7,8 @@
 	<parent>
 		<groupId>io.spring.platform</groupId>
 		<artifactId>platform-bom</artifactId>
-		<version>2.0.1.RELEASE</version>
+		<!-- <version>2.0.1.RELEASE</version> -->
+		<version>2.0.6.RELEASE</version>
 	</parent>
 	<groupId>sample.multimodule</groupId>
 	<artifactId>sample.multimodule</artifactId>
@@ -28,12 +29,12 @@
 		<module>service-api</module>
 		<module>service-impl</module>
 		<module>application</module>
-<!-- 		<module>application2</module> -->
+		<!-- <module>application2</module> -->
 		<module>controller</module>
 		<module>jms</module>
-<!-- 		<module>jms2</module> -->
+		<!-- <module>jms2</module> -->
 		<module>remotejms</module>
-<!-- 		<module>remotejms2</module> -->
+		<!-- <module>remotejms2</module> -->
 		<module>utill</module>
 	</modules>
 	<dependencies>

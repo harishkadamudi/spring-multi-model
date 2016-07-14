@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import sample.multimodule.domain.entity.Message;
 import sample.multimodule.local.Producer;
 
 @Component
@@ -24,7 +25,7 @@ public class App2DomainConsumer {
 	private Producer producer;
 	
 	@RabbitListener(queues = "${message.from.local.queue}")
-	public void receiveLocalQueue(String message) {
+	public void receiveLocalQueue(Message message) {
 		System.out.println(" ------[x] Home Domain Queue ------[x] --" + this.getClass().getName() + " consuming Message \n "
 				+ message);
 		LOG.debug(" ------[x -- "+ appName + "---x] -- " + this.getClass().getName() + " consuming Message \n "

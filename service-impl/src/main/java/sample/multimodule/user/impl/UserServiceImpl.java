@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 		// in.setId(new Long(1));
 		Message save = messageRepository.save(in);
 		LOG.debug("------ Message Saved to Message Out Table" + save.getId());
-		producer.send(modelToxml);
+		producer.send(save);
 		return userDetails;
 	}
 

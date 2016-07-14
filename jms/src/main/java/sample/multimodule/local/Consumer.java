@@ -9,6 +9,7 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
 
 import sample.multimodue.remote.sender.jms.RemoteJMSSender;
+import sample.multimodule.domain.entity.Message;
 
 @Component
 public class Consumer {
@@ -20,14 +21,14 @@ public class Consumer {
 	
 	private @Value("${application.logger.name}") String appName;
 	
-	private String message ;
+	private Message message ;
 	
 //	@RabbitListener(queues = "MessageOutLocalQueue")
 	@RabbitListener(queues = "#{localQueue.name}")
 	@SendTo(value = "#{localQueueAck.name}")
-	public Boolean receiveLocalQueue(String message) {
+	public Boolean receiveLocalQueue(Message message) {
 		LOG.debug(" ------[x -- "+ appName + "---x] --" + this.getClass().getName() + " consuming Message \n " + message);
-		if (message.isEmpty() || message.trim().length() == 0)
+		if (message == null)
 			return Boolean.FALSE;
 		else
 			this.setMessage(message);
@@ -42,11 +43,11 @@ public class Consumer {
 		}
 	}
 
-	public String getMessage() {
+	public Message getMessage() {
 		return message;
 	}
 
-	public void setMessage(String message) {
+	public void setMessage(Message message) {
 		this.message = message;
 	}
 	
