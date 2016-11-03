@@ -11,12 +11,12 @@ import sample.multimodule.domain.entity.Message;
 //import sample.multimodule.foreign.jms.sender.JMSForeignSender;
 
 @Component
-@Profile(value="app1")
-public class RemoteJMSConsumer {
+@Profile(value = "app2")
+public class RemoteJMSConsumer2 {
 
 	private @Value("${application.logger.name}") String appName;
 
-	private static final Log LOG = LogFactory.getLog(RemoteJMSConsumer.class);
+	private static final Log LOG = LogFactory.getLog(RemoteJMSConsumer2.class);
 
 	// @Autowired
 	// JMSForeignSender jmsForeignSender;
@@ -25,7 +25,7 @@ public class RemoteJMSConsumer {
 		try {
 			LOG.debug(" ------[x -- " + appName + "---x] -- " + this.getClass().getName()
 					+ " in method receiveMessage [with message] \n" + message);
-			String url = "http://localhost:8080/foreignjms/publish";
+			String url = "http://localhost:8080/foreignjms2/publish";
 			RestTemplate template = new RestTemplate();
 			Message object = template.postForObject(url, message, Message.class);
 			System.out.println(object.getId());

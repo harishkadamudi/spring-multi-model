@@ -20,9 +20,11 @@
 			<artifactId>sample.multimodule.model</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<!-- <dependency> <groupId>sample.multimodule.remotejms</groupId> <artifactId>sample.multimodule.remotejms</artifactId> 
+			<version>${project.version}</version> </dependency> -->
 		<dependency>
-			<groupId>sample.multimodule.remotejms</groupId>
-			<artifactId>sample.multimodule.remotejms</artifactId>
+			<groupId>sample.multimodule</groupId>
+			<artifactId>sample.multimodule.repository</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>

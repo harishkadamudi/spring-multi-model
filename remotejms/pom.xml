@@ -36,5 +36,9 @@
 			<artifactId>sample.multimodule.repository</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-artemis</artifactId>
+		</dependency>
 	</dependencies>
 </project>

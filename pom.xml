@@ -36,6 +36,8 @@
 		<module>remotejms</module>
 		<!-- <module>remotejms2</module> -->
 		<module>utill</module>
+<!-- 		<module>foreignjms</module> -->
+		<module>foreignjms</module>
 	</modules>
 	<dependencies>
 

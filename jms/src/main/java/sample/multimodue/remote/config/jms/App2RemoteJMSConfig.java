@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import sample.multimodue.remote.consumer.jms.RemoteJMSConsumer;
+import sample.multimodue.remote.consumer.jms.RemoteJMSConsumer2;
 
 @Configuration
 @Profile(value = "app2")
@@ -25,7 +26,7 @@ public class App2RemoteJMSConfig {
 	}
 
 	@Bean
-	MessageListenerAdapter listenerAdapter(RemoteJMSConsumer receiver) {
+	MessageListenerAdapter listenerAdapter(RemoteJMSConsumer2 receiver) {
 		return new MessageListenerAdapter(receiver, "receiveMessage");
 	}
 

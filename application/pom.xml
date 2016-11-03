@@ -23,7 +23,6 @@
 			<artifactId>sample.multimodule.controller</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-
 		<!-- Spring Boot dependencies -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>

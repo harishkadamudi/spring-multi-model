@@ -21,9 +21,9 @@ public class JMSForeignSender {
 	@Autowired
 	@Qualifier(value = "foreignRabbitTemplate")
 	private RabbitTemplate template;
-	
+
 	private @Value("${application.logger.name}") String appName;
-	
+
 	@Autowired
 	private TopicExchange topic;
 
@@ -36,14 +36,17 @@ public class JMSForeignSender {
 
 	public void send(Message message) {
 		String key = keys[this.index];
+		LOG.debug("lOOKING FOR JNDI LOOK UP ---- " );
+		//JndiTemplate jndiTemplate = jmsLookup.jmsConnectionFactoryFactoryBean().getJndiTemplate();
 		template.convertAndSend(topic.getName(), key, message);
-		LOG.debug(" [x -- "+appName +" -- x] Sent '" + message + "'");
+		LOG.debug(" [x -- " + appName + " -- x] Sent '" + message + "'");
 	}
 
 	public void sendOtherDomain(Message message) {
 		System.out.println("[x] --- Sending to Queue----" + queue.getName() + " ---- [x]");
 		template.setQueue(queue.getName());
-		LOG.debug("[x -- "+appName+ " -- x] --- Sending to Queue----" + queue.getName() + " ---- [x]");
+		LOG.debug("[x -- " + appName + " -- x] --- Sending to Queue----" + queue.getName() + " ---- [x]");
 		template.convertAndSend(queue.getName(), message);
 	}
+
 }

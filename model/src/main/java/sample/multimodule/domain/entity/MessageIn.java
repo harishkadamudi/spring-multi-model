@@ -9,8 +9,8 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Message_Out")
-public class Message implements Serializable{
+@Table(name = "Message_In")
+public class MessageIn implements Serializable{
 
 	private static final long serialVersionUID = 3937277542482764856L;
 
@@ -37,10 +37,4 @@ public class Message implements Serializable{
 		this.data = data;
 	}
 
-	@Override
-	public String toString() {
-		return "Message [id=" + id + "]";
-	}
-
-	
 }
